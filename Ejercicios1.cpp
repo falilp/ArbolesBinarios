@@ -64,3 +64,60 @@ unsigned int ProfundidadNodo(const Abin<T>& A, const typename Abin<T>::nodo n){
     }
 }
 #pragma endregion
+
+#pragma region Ejercicio4
+//Implementa un subprograma que determine el nivel de desequilibrio de un árbol binario, definido como el máximo desequilibrio de todos sus nodos. El desequilibrio de un nodo se
+//define como la diferencia entre las alturas de los subárboles del mismo
+
+template <typename T>
+unsigned int CalcularDesequilibrio(const Abin<T>& A, const typename Abin<T>::nodo n){
+    if(n == A.NODO_NULO){
+        return 0;
+    }else{
+        return abs(AlturaRecursiva(A,A.hijoIzqdo(n))-AlturaRecursiva(A,A.hijoDrcho(n)));
+    }
+}
+
+template <typename T>
+unsigned int DesequilibrioAbin(const Abin<T>& A){
+    if(A.arbolVacio() || (A.raiz() == A.NODO_NULO)){
+        return 0;
+    }else{
+        return CalcularDesequilibrio(A,A.raiz());
+    }
+}
+
+#pragma endregion
+
+#pragma region Ejercicio5
+//Implementa un subprograma que determine si un árbol binario es o no pseudocompleto. En este problema entenderemos que un árbol es pseudocompleto, si en el penúltimo nivel
+//del mismo cada uno de los nodos tiene dos hijos o ninguno.
+
+template<typename T>
+bool PseudocompletoRecursivo(const Abin<T>& A, const typename Abin<T>::nodo n){
+    if(n == A.NODO_NULO){
+        return true;
+    }else{
+        if(AlturaRecursiva(A,n)-1 == ProfundidadNodo(A,n)){
+            if(((A.hijoIzqdo(n) != A.NODO_NULO) && (A.hijoDrcho(n) != A.NODO_NULO)) || 
+                ((A.hijoIzqdo(n) == A.NODO_NULO) && (A.hijoDrcho(n) == A.NODO_NULO))){
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return PseudocompletoRecursivo(A,A.hijoIzqdo(n)) && PseudocompletoRecursivo(A,A.hijoDrcho(n));
+        }
+    }
+}
+
+template<typename T>
+bool PseudocompletoAbin(const Abin<T>& A){
+    if(A.arbolVacio() || (A.raiz() == A.NODO_NULO)){
+        return false;
+    }else{
+        return PseudocompletoRecursivo(A,A.raiz());
+    }
+}
+
+#pragma endregion
