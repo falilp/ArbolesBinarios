@@ -98,7 +98,7 @@ bool PseudocompletoRecursivo(const Abin<T>& A, const typename Abin<T>::nodo n){
     if(n == A.NODO_NULO){
         return true;
     }else{
-        if(AlturaRecursiva(A,n)-1 == ProfundidadNodo(A,n)){
+        if(AlturaRecursiva(A,n)-1 == ProfundidadNodo(A,n)){ //El penultimo nivel coincide con la altura - 1 del arbol = la profundidad del nodo
             if(((A.hijoIzqdo(n) != A.NODO_NULO) && (A.hijoDrcho(n) != A.NODO_NULO)) || 
                 ((A.hijoIzqdo(n) == A.NODO_NULO) && (A.hijoDrcho(n) == A.NODO_NULO))){
                 return true;
@@ -121,3 +121,6 @@ bool PseudocompletoAbin(const Abin<T>& A){
 }
 
 #pragma endregion
+/*
+Code by Falilp
+*/
