@@ -101,18 +101,52 @@ double ExpresionRec(const Abin<Elemento> &abin,const typename Abin<Elemento>::no
             std::cout<<"Ha introducido un operador erroneo"<<std::endl;
             break;
         }
+    }else{
+        return abin.elemento(nodo).operando;
     }
 }
 
 #pragma endregion
 
 #pragma region Ejercicio4
-/*
-RENEGADOS:
-Se dice que un nodo es renegado cuando va encontra de los demás. Dado un Árbol Binario, calcular el número de nodos renegados que hay en dicho árbol.
-*/
-//Nota: considero que renegado es apartir de la raiz 
-#pragma endregiom
+/*RENEGADOS:Se dice que un nodo es renegado cuando va encontra de los demás. Dado un Árbol Binario, calcular el número de nodos renegados que hay en dicho árbol.
+Nota: considero que renegado es apartir de la raiz y */
+
+template <typename T>
+unsigned int RecNodosRenagados(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(A.raiz() == ndoo){
+        return RecNodosRenagados(A,A.hijoIzqdo(nodo)) + RecNodosRenagados(A,A.hijoDrcho(nodo));
+    }else if(nodo != A.NODO_NULO){
+        if(A.elemento(nodo) == A.elemento(A.raiz())){
+            return 1 + RecNodosRenagados(A,A.hijoIzqdo(nodo)) + RecNodosRenagados(A,A.hijoDrcho(nodo));
+        }else{
+            return RecNodosRenagados(A,A.hijoIzqdo(nodo)) + RecNodosRenagados(A,A.hijoDrcho(nodo));
+        }
+    }else{
+        return 0;
+    }
+}
+
+template <typename T>
+unsigned int NodosRenegados(const Abin<T>& A){
+    if(A.arbolVacio()){
+        return 0;
+    }else{
+        return RecNodosRenagados(A,A.raiz())
+    }
+}
+
+#pragma endregion
+
+#pragma region Ejercicio5
+/*Contar el numero de nodos de un arbol binario que tenga exactamente 3 nietos*/
+
+#pragma endregion
+
+#pragma region Ejercicio5
+/*Encontrar un nodo en el arbol*/
+
+#pragma endregion
 /*
 Code by Falilp
 */
