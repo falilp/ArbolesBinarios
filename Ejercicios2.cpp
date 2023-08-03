@@ -139,11 +139,6 @@ unsigned int NodosRenegados(const Abin<T>& A){
 #pragma endregion
 
 #pragma region Ejercicio5
-/*Contar el numero de nodos de un arbol binario que tenga exactamente 3 nietos*/
-
-#pragma endregion
-
-#pragma region Ejercicio5
 /*Encontrar un nodo en el arbol*/
 
 template <typename T>
@@ -166,6 +161,11 @@ typename Abin<T>::nodo EncontrarNodo(const Abin<T>& A, const typename Abin<T>::n
         return RecBuscarNodo(A,nodo,A.raiz());
     }
 }
+
+#pragma endregion
+
+#pragma region Ejercicio6
+/*Contar el numero de nodos de un arbol binario que tenga exactamente 3 nietos*/
 
 #pragma endregion
 /*
