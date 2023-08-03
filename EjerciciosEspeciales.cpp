@@ -47,9 +47,5 @@ unsigned int HermanosReflejados(const Abin<T>& A){
 #pragma endregion
 
 #pragma region Ejercicio3
-/*Contar el numero de nodos de un arbol binario que tenga el doble de nietos de de bisnietos*/
-#pragma endregion
-
-#pragma region Ejercicio4
 /*Saber si un Abin es un ABB*/
 #pragma endregion
