@@ -146,6 +146,27 @@ unsigned int NodosRenegados(const Abin<T>& A){
 #pragma region Ejercicio5
 /*Encontrar un nodo en el arbol*/
 
+template <typename T>
+typename Abin<T>::nodo RecBuscarNodo(const Abin<T>& A, const typename Abin<T>::nodo nodo, const typename Abin<T>::nodo nodoAux){
+    if(A.NODO_NULO != nodoAux){
+        if(nodo == nodoAux){
+            return nodoAux;
+        }else{
+            RecBuscarNodo(A,nodo,A.hijoIzqdo(nodoAux));
+            RecBuscarNodo(A,nodo,A.hijoDrcho(nodoAux));
+        }
+    }
+}
+
+template <typename T>
+typename Abin<T>::nodo EncontrarNodo(const Abin<T>& A, const typename Abin<T>::nodo nodo){
+    if(A.arbolVacio() || nodo == A.NODO_NULO){
+        return A.NODO_NULO;
+    }else{
+        return RecBuscarNodo(A,nodo,A.raiz());
+    }
+}
+
 #pragma endregion
 /*
 Code by Falilp
