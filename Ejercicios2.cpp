@@ -147,10 +147,16 @@ typename Abin<T>::nodo RecBuscarNodo(const Abin<T>& A, const typename Abin<T>::n
         if(nodo == nodoAux){
             return nodoAux;
         }else{
-            RecBuscarNodo(A,nodo,A.hijoIzqdo(nodoAux));
-            RecBuscarNodo(A,nodo,A.hijoDrcho(nodoAux));
+            typename Abin<T>::nodo aux = RecBuscarNodo(A,nodo,A.hijoIzqdo(nodoAux));
+            
+            if(aux != A.NODO_NULO){
+                return aux;
+            }
+            
+            return RecBuscarNodo(A,nodo,A.hijoDrcho(nodoAux));
         }
     }
+    return A.NODO_NULO;
 }
 
 template <typename T>
@@ -166,6 +172,35 @@ typename Abin<T>::nodo EncontrarNodo(const Abin<T>& A, const typename Abin<T>::n
 
 #pragma region Ejercicio6
 /*Contar el numero de nodos de un arbol binario que tenga exactamente 3 nietos*/
+
+template <typename T>
+unsigned int NNietos(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(nodo == A.NODO_NULO){
+        return 0;
+    }else{
+        return 1 + NNietos(A,A.hijoIzqdo(nodo)) + NNietos(A,A.hijoDrcho(nodo));
+    }
+}
+
+template <typename T>
+unsigned int RecNumNodos3Nietos(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(nodo == A.NODO_NULO){
+        return 0;
+    }else if((NNietos(A,A.hijoIzqdo(nodo)) + NNietos(A,A.hijoDrcho(nodo))) >= 3){
+        return 1 + RecNumNodos3Nietos(A,A.hijoIzqdo(nodo)) + RecNumNodos3Nietos(A,A.hijoDrcho(nodo));
+    }else{
+        return RecNumNodos3Nietos(A,A.hijoIzqdo(nodo)) + RecNumNodos3Nietos(A,A.hijoDrcho(nodo));
+    }
+}
+
+template <typename T>
+unsigned int Nodos3Nietos(const Abin<T>& A){
+    if(A.arbolVacio()){
+        return 0;
+    }else{
+        return RecNumNodos3Nietos(A,A.raiz())
+    }
+}
 
 #pragma endregion
 /*
