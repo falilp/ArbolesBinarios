@@ -43,9 +43,62 @@ unsigned int HermanosReflejados(const Abin<T>& A){
 #pragma endregion
 
 #pragma region Ejercicio2
-/*Contar el numero de nodos de un arbol binario que tenga el doble de nietos de de bisnietos*/
+/*Contar el numero de nodos de un arbol binario que tenga el doble de nietos que de bisnietos*/
+//Denominare a nodos de un arbol binario que tenga el doble de nietos de de bisnietos como Nodos Jovenes
+
+template <typename T>
+unsigned int Nhijos(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    unsigned int hijos = 0;
+    if(nodo != A.NODO_NULO){
+        if(A.hijoIzqdo(nodo) != A.NODO_NULO){hijos++;}
+        if(A.hijoDrcho(nodo) != A.NODO_NULO){hijos++;}
+    }
+    return hijos;
+}
+
+template <typename T>
+unsigned int NumNietos(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(nodo == A.NODO_NULO){
+        return 0;
+    }else{
+        return Nhijos(A,A.hijoIzqdo(nodo)) + Nhijos(A,A.hijoDrcho(nodo));
+    }
+}
+
+template <typename T>
+unsigned int NumBisNietos(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(nodo == A.NODO_NULO){
+        return 0;
+    }else{
+        return NumNietos(A,A.hijoIzqdo(nodo)) + NumNietos(A,A.hijoDrcho(nodo));
+    }
+}
+
+template <typename T>
+unsigned int RecNodosJovenes(const Abin<T>& A,const typename Abin<T>::nodo nodo){
+    if(nodo == A.NODO_NULO){
+        return 0;
+    }else if(NumBisNietos(A,nodo) == 2*NumNietos(A,nodo)){
+        return 1 + RecNodosJovenes(A,A.hijoIzqdo(nodo)) + RecNodosJovenes(A,A.hijoDrcho(nodo));
+    }else{
+        return RecNodosJovenes(A,A.hijoIzqdo(nodo)) + RecNodosJovenes(A,A.hijoDrcho(nodo));
+    }
+}
+
+template <typename T>
+unsigned int NodosJovenes(const Abin<T>& A){
+    if(A.arbolVacio()){
+        return 0;
+    }else{
+        return RecNodosJovenes(A,A.raiz());
+    }
+}
+
 #pragma endregion
 
 #pragma region Ejercicio3
 /*Saber si un Abin es un ABB*/
+/*Definición: Un árbol binario de búsqueda (ABB) es un árbol binario con la propiedad de que todos los elementos 
+almacenados en el subárbol izquierdo de cualquier nodo x son menores que el elemento almacenado en x ,y todos los 
+elementos almacenados en el subárbol derecho de x son mayores que el elemento almacenado en x.*/
 #pragma endregion
