@@ -7,9 +7,9 @@ Reflejados es que tenga la misma estructura de ramificacion.*/
 
 template <typename T>
 bool Reflejados(const Abin<T>& A,const typename Abin<T>::nodo nodo1,const typename Abin<T>::nodo nodo2){
-    if(A.arbolVacio()){
-        return false;
-    }else if(((A.NODO_NULO != nodo1) && (A.NODO_NULO != nodo2)) || ((A.NODO_NULO == nodo1) && (A.NODO_NULO == nodo2))){
+    if(A.NODO_NULO == nodo1 && A.NODO_NULO == nodo2){
+        return true;
+    }else if(A.NODO_NULO != nodo1 && A.NODO_NULO != nodo2){
         return true && Reflejados(A,A.hijoIzqdo(nodo1),A.hijoIzqdo(nodo2)) && Reflejados(A,A.hijoDrcho(nodo1),A.hijoDrcho(nodo2));
     }else{
         return false;
