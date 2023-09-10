@@ -5,6 +5,9 @@
 /*Dado un arbol binario de un tipo generico T , calcular el numero de nodos que siendo hermanos entre si tienen la misma raiz y sus subarboles son reflejados.
 Reflejados es que tenga la misma estructura de ramificacion.*/
 
+/*Consideraré que un par de vertices que son hermanos entre si y reflejados cuentan como 1,
+tambien podria contemplarse como 2 al ser estos reflejados*/
+
 template <typename T>
 bool Reflejados(const Abin<T>& A,const typename Abin<T>::nodo nodo1,const typename Abin<T>::nodo nodo2){
     if(A.NODO_NULO == nodo1 && A.NODO_NULO == nodo2){
